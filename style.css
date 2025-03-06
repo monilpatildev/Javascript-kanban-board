@@ -1,0 +1,78 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", serif; /* font-family: "Manrope", serif; */
+}
+p {
+  margin-bottom: 0 !important;
+}
+.flex-justify {
+  display: flex;
+  justify-content: space-between;
+}
+.add-section,
+.display-kanban-board-section {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+.add-section-heading,
+.display-kanban-board-heading {
+  padding: 6px;
+  background-color: rgb(230, 230, 230);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.add-section .add-section-formdata,
+.display-kanban-board-section .displaying-board {
+  padding: 10px;
+  border-radius: 10px;
+  /* background-color: aqua; */
+}
+.display-kanban-board-heading {
+  display: flex;
+  justify-content: space-between;
+}
+.serch-bar-form {
+  display: flex;
+  gap: 10px;
+}
+.display-kanban-board-section .displaying-board .container-list {
+  min-width: 350px;
+  height: auto;
+  min-height: 250px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  /* color: white; */
+  border-radius: 5px;
+  font-size: 15px;
+}
+.display-kanban-board-section .displaying-board .container-list .div-heading {
+  padding: 6px 6px 6px 10px;
+  color: white;
+
+  /* background-color: rgb(230, 230, 230); */
+}
+.display-kanban-board-section .displaying-board .container-list .datalist {
+  padding: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+}
+.display-kanban-board-section
+  .displaying-board
+  .container-list
+  .datalist
+  .title-edit-delete-btn
+  p {
+  font-weight: 700;
+}
+a {
+  cursor: pointer;
+  margin-right: 5px;
+}
+.display-kanban-board-section .display-kanban-board-heading h6 {
+  padding: 8px 0px 0px 8px !important;
+}
+.display-kanban-board-section
+  .displaying-board
+  .container-list
+  .datalist
+  .description-date {
+  font-style: italic;
+}
