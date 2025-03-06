@@ -28,10 +28,10 @@ const statuses = [
 
 let dataOfBoard = getBoardData();
 
-let isValidalFieldFortitle = true;
-let isValidalFieldForStatus = true;
-let isValidalFieldForDate = true;
-let isValidalFieldForDescription = true;
+let isValidFieldForTitle = true;
+let isValidFieldForStatus = true;
+let isValidFieldForDate = true;
+let isValidFieldForDescription = true;
 
 const today = new Date().toISOString().slice(0, 16);
 document.getElementsByName("date")[0].min = today;
@@ -42,7 +42,7 @@ const submitButton = document.getElementById("submit");
 const resetButton = document.getElementById("reset");
 
 const titleField = document.getElementById("title");
-const errorFieldFortitle = document.getElementById("errorMessageForTitle");
+const errorFieldForTitle = document.getElementById("errorMessageForTitle");
 
 const statusField = document.getElementById("status");
 const errorFieldForStatus = document.getElementById("statusErrorMessage");
@@ -76,21 +76,21 @@ titleField.addEventListener("input", () => {
   const titleValue = document.getElementById("title").value;
   if (!titleValue) {
     titleField.style.borderColor = "red";
-    errorFieldFortitle.innerText = "Enter valid title";
-    isValidalFieldFortitle = false;
+    errorFieldForTitle.innerText = "Enter valid title";
+    isValidFieldForTitle = false;
   } else if (titleValue.length < 20 || titleValue.length > 50) {
     titleField.style.borderColor = "red";
-    errorFieldFortitle.innerText = "title should be between 20 to 40";
-    isValidalFieldFortitle = false;
+    errorFieldForTitle.innerText = "title should be between 20 to 40";
+    isValidFieldForTitle = false;
     return false;
   } else if (!/^[a-zA-Z0-9\s]+$/.test(titleValue)) {
     titleField.style.borderColor = "red";
-    errorFieldFortitle.innerText = "Name should not include special character";
-    isValidalFieldFortitle = false;
+    errorFieldForTitle.innerText = "Name should not include special character";
+    isValidFieldForTitle = false;
     return false;
   } else {
-    isValidalFieldFortitle = true;
-    errorFieldFortitle.innerText = "";
+    isValidFieldForTitle = true;
+    errorFieldForTitle.innerText = "";
     titleField.style.borderColor = "gainsboro";
   }
 });
@@ -99,10 +99,10 @@ statusField.addEventListener("change", () => {
   const statusValue = document.getElementById("status").value;
   if (!statusValue) {
     errorFieldForStatus.innerText = "Enter valid Status";
-    isValidalFieldForStatus = false;
+    isValidFieldForStatus = false;
     return;
   }
-  isValidalFieldForStatus = true;
+  isValidFieldForStatus = true;
   errorFieldForStatus.innerText = "";
   statusField.style.borderColor = "gainsboro";
 });
@@ -113,32 +113,32 @@ dateField.addEventListener("change", () => {
 
   if (dateValue < currentDate) {
     errorFieldForDate.innerText = "Enter valid date";
-    isValidalFieldForDate = false;
+    isValidFieldForDate = false;
     return false;
   }
-  isValidalFieldForDate = true;
+  isValidFieldForDate = true;
   errorFieldForDate.innerText = "";
 });
 
 descriptionField.addEventListener("input", () => {
-  const desriptionValue = document.getElementById("description").value;
-  if (!desriptionValue) {
+  const descriptionValue = document.getElementById("description").value;
+  if (!descriptionValue) {
     errorFieldForDescription.innerHTML = "";
     errorFieldForDescription.innerText = "";
-    isValidalFieldForDescription = true;
+    isValidFieldForDescription = true;
     descriptionField.style.borderColor = "gainsboro";
     return false;
   }
-  if (desriptionValue.length < 20 || desriptionValue.length > 100) {
+  if (descriptionValue.length < 20 || descriptionValue.length > 100) {
     descriptionField.style.borderColor = "red";
     errorFieldForDescription.innerText =
       "description should be between 40 to 80";
-    isValidalFieldForDescription = false;
+    isValidFieldForDescription = false;
     return false;
   }
-  console.log(desriptionValue);
+  console.log(descriptionValue);
 
-  isValidalFieldForDescription = true;
+  isValidFieldForDescription = true;
   errorFieldForDescription.innerText = "";
   descriptionField.style.borderColor = "gainsboro";
 });
@@ -147,12 +147,12 @@ resetButton.addEventListener("click", () => {
   removeField();
 });
 
-const taskListConatainer = document.getElementById("KanbanBoard");
+const taskListContainer = document.getElementById("KanbanBoard");
 
-function displayDataToKanbanBoard(statuses, serchVar) {
-  const containeStatusList = document.createElement("div");
-  setAttributes(containeStatusList, "class", "d-flex gap-3");
-  const updatedData = serchVar || getBoardData();
+function displayDataToKanbanBoard(statuses, searchVar) {
+  const containStatusList = document.createElement("div");
+  setAttributes(containStatusList, "class", "d-flex gap-3");
+  const updatedData = searchVar || getBoardData();
   for (let element of statuses) {
     const statusList = createStatusList(element);
     for (const item of updatedData) {
@@ -164,10 +164,10 @@ function displayDataToKanbanBoard(statuses, serchVar) {
         statusList.appendChild(containerDataListForTask);
       }
     }
-    containeStatusList.appendChild(statusList);
+    containStatusList.appendChild(statusList);
   }
 
-  taskListConatainer.replaceChildren(containeStatusList);
+  taskListContainer.replaceChildren(containStatusList);
 }
 displayDataToKanbanBoard(statuses);
 
@@ -227,9 +227,9 @@ function createStatusListTasks(item, color) {
 function updateSectionForTaskList(taskId, newBoardId) {
   const updatedStatus = statuses.find((status) => status.id === newBoardId);
 
-  const previosSectionOfTask = document.getElementById(taskId);
+  const previousSectionOfTask = document.getElementById(taskId);
 
-  previosSectionOfTask.remove();
+  previousSectionOfTask.remove();
   if (newBoardId) {
     const sectionOfTask = document.getElementById(updatedStatus.id);
     const updatedData = getBoardData();
@@ -345,7 +345,7 @@ function validation(type) {
 
   if (!titleValue) {
     titleField.style.borderColor = "red";
-    errorFieldFortitle.innerText = "Enter valid title";
+    errorFieldForTitle.innerText = "Enter valid title";
     isValid = false;
   }
   if (type !== "submit") {
@@ -360,10 +360,10 @@ function validation(type) {
   }
 
   if (
-    !isValidalFieldFortitle ||
-    !isValidalFieldForStatus ||
-    !isValidalFieldForDate ||
-    !isValidalFieldForDescription
+    !isValidFieldForTitle ||
+    !isValidFieldForStatus ||
+    !isValidFieldForDate ||
+    !isValidFieldForDescription
   ) {
     isValid = false;
   }
@@ -396,7 +396,7 @@ function removeField() {
   titleField.style.borderColor = "gainsboro";
 
   statusField.style.borderColor = "gainsboro";
-  errorFieldFortitle.innerText = "";
+  errorFieldForTitle.innerText = "";
   errorFieldForStatus.innerText = "";
   errorFieldForDate.innerText = "";
   selectField.classList.add("d-none");
@@ -426,80 +426,3 @@ function deleteTask(id) {
   setBoardData(getDataFromLocals);
   updateSectionForTaskList(taskData.taskId);
 }
-
-// const boardContainer = document.createElement("div");
-// setAttributes(boardContainer, "class", "d-flex gap-3");
-// let updatedData = serchVar || getBoardData();
-// for (const element of statuses) {
-//   const containerList = document.createElement("div");
-//   setAttributes(containerList, "class", "container-list ");
-//   setAttributes(containerList, "style", `border-color: ${element.color}`);
-//   const containerHeading = document.createElement("div");
-//   setAttributes(containerHeading, "class", "div-heading");
-//   containerHeading.innerText = element.title;
-//   setAttributes(
-//     containerHeading,
-//     "style",
-//     `background-color: ${element.color};`
-//   );
-
-//   containerList.appendChild(containerHeading);
-//   // const
-//   // if(!serchVar){}
-//   const filterData = updatedData.filter((item) => {
-//     return item.status === element.id;
-//   });
-//   serchVar ? filterData : serchVar;
-//   console.log("UUUUUUpdating", filterData);
-//   // console.log("element is ", element.title, filterData);
-//   // const itemsOfData = addTaskDataIntoBoard(filterData);
-//   console.log(serchVar);
-
-// for (const item of filterData) {
-//   const containerDataList = document.createElement("div");
-//   setAttributes(containerDataList, "class", "datalist m-2");
-//   setAttributes(
-//     containerDataList,
-//     "style",
-//     `border-color: ${element.color}`
-//   );
-//   const titleEditDeletetDiv = document.createElement("div");
-//   setAttributes(
-//     titleEditDeletetDiv,
-//     "class",
-//     "title-edit-delete-btn flex-1"
-//   );
-//   titleEditDeletetDiv.innerHTML = `<p class="w-75">${item.title}</p>
-//           <div class="edit-delete-btn">
-//             <a href="#" class="link-primary" onclick="editField('${item.taskId}')">Edit</a>
-//             <a href="#" class="link-danger"  onclick="deleteTask('${item.taskId}')" >Delete</a>
-//           </div>`;
-//   const descDateDiv = document.createElement("div");
-//   setAttributes(descDateDiv, "class", "description-date flex-1");
-
-//   descDateDiv.innerHTML = `<p class="w-75">${item.description}</p>
-//           <p>${item.date}</p>`;
-
-//   containerDataList.appendChild(titleEditDeletetDiv);
-//   containerDataList.appendChild(descDateDiv);
-//   containerList.appendChild(containerDataList);
-// }
-
-// filterData.forEach((item) => {
-//   const containerDataList = createStatusListTasks(item, element.color);
-//   containerList.appendChild(containerDataList);
-// });
-
-//   boardContainer.appendChild(containerList);
-// }
-// taskListConatainer.replaceChildren(boardContainer);
-// // taskListConatainer.
-
-// const filterData = updatedData.filter((item) => item.status === element.id);
-// for (const item of filterData) {
-//   const containerDataListForTask = createStatusListTasks(
-//     item,
-//     element.color
-//   );
-//   statusList.appendChild(containerDataListForTask);
-// }
